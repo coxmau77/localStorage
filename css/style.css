@@ -1,0 +1,22 @@
+:root {
+    --bg-clr: whitesmoke;
+    --txt-title: rgb(23, 28, 40);
+    --txt-paragraph: rgb(20, 35, 48);
+}
+
+html {
+    font-size: 18px;
+    color: rgb(8, 8, 24);
+}
+
+h1,h2,h3 {
+    color: var(--txt-title);
+}
+
+* {
+    color: var(--txt-paragraph);
+}
+
+body {
+    background-color: var(--bg-clr);
+}
