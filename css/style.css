@@ -20,3 +20,7 @@ h1,h2,h3 {
 body {
     background-color: var(--bg-clr);
 }
+
+.complete {
+    text-decoration: line-through;
+}

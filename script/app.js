@@ -1,3 +1,4 @@
+// https://www.youtube.com/live/YDIHQzoTJ-0?feature=share
 let tareas = [];
 const form = document.querySelector("form");
 
@@ -41,9 +42,9 @@ const renderTareas = () => {
     tbody.innerHTML = ''; //reinicio la tabla
     tareas.forEach( tarea => tbody.innerHTML += `
         <tr>
-            <td>${tarea.text}</td>
+            <td class="${tarea.complete ? "complete":""}">${tarea.text}</td>
             <td>
-                <button>completar</button>
+                <button data-id="${tarea.id}" class="btn-completar">completar</button>
                 <button>editar</button>
                 <button>borrar</button>
             </td>
@@ -51,7 +52,28 @@ const renderTareas = () => {
     `);
 }
 
+document.addEventListener('click', event => {
+    if(event.target.classList.contains('btn-completar')){
+        // console.info(event.target.dataset.id);
+        completarTarea(event.target.dataset.id)
+    };
+})
+
+// btn completar tarea
+const completarTarea = id => {
+    tareas.forEach(tarea => {
+        if (tareas.id == id){
+            tarea.complete = !tarea.complete;
+        }
+    });
+
+    // Vuelvo a leer las tareas y muestro las que queden
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+    renderTareas();
+}
+
 // Esta funcion se ejecuta en cuanto todo el documento esta cargado
 document.addEventListener('DOMContentLoaded', () =>{
     renderTareas();
+    
 })
