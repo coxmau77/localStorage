@@ -1,4 +1,4 @@
-const tareas = [];
+let tareas = [];
 const form = document.querySelector("form");
 
 form.addEventListener("submit", (event) => {
@@ -29,4 +29,29 @@ form.addEventListener("submit", (event) => {
   form.reset();
 
   console.log(tareas);
+  renderTareas();
+  
 });
+
+// Mostramos las tareas 
+const renderTareas = () => {
+    // Volvemos a leer el array y lo parseamos a un objeto jacaScript
+    tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = ''; //reinicio la tabla
+    tareas.forEach( tarea => tbody.innerHTML += `
+        <tr>
+            <td>${tarea.text}</td>
+            <td>
+                <button>completar</button>
+                <button>editar</button>
+                <button>borrar</button>
+            </td>
+        </tr>
+    `);
+}
+
+// Esta funcion se ejecuta en cuanto todo el documento esta cargado
+document.addEventListener('DOMContentLoaded', () =>{
+    renderTareas();
+})
