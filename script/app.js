@@ -46,16 +46,19 @@ const renderTareas = () => {
             <td>
                 <button data-id="${tarea.id}" class="btn-completar">completar</button>
                 <button>editar</button>
-                <button>borrar</button>
+                <button onclick="borrarTarea(${tarea.id})">borrar</button>
             </td>
         </tr>
     `);
 }
 
 document.addEventListener('click', event => {
+    // event.target.classList.contains('btn-completar') //Devuelve true || false
     if(event.target.classList.contains('btn-completar')){
+
+        // event.target.dataset.id //Devuelve el id de 1 tarea
         // console.info(event.target.dataset.id);
-        completarTarea(event.target.dataset.id)
+        completarTarea(event.target.dataset.id);
     };
 })
 
@@ -63,14 +66,24 @@ document.addEventListener('click', event => {
 const completarTarea = id => {
     tareas.forEach(tarea => {
         if (tarea.id == id){
+            // modifico el complete del objeto tarea
             tarea.complete = !tarea.complete;
         }
     });
 
-    // Vuelvo a leer las tareas y muestro las que queden
+    // Vuelvo a leer las tareas luego de modificarlas y muestro las que queden
     localStorage.setItem('tareas', JSON.stringify(tareas));
     renderTareas();
 }
+
+// btn borrar tarea
+const borrarTarea = id => {
+    // Vamos a filtrar todas las tareas menos las que queremos borrar
+    const tareasFiltradas = tareas.filter(tarea => tarea.id != id)
+    // return tareasFiltradas
+    localStorage.setItem("tareas",JSON.stringify(tareasFiltradas));
+    renderTareas();
+};
 
 // Esta funcion se ejecuta en cuanto todo el documento esta cargado
 document.addEventListener('DOMContentLoaded', () =>{
