@@ -2,7 +2,7 @@
 let tareas = [];
 const form = document.querySelector("form");
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", event => {
   event.preventDefault();
   // console.log(event)
 
@@ -62,7 +62,7 @@ document.addEventListener('click', event => {
 // btn completar tarea
 const completarTarea = id => {
     tareas.forEach(tarea => {
-        if (tareas.id == id){
+        if (tarea.id == id){
             tarea.complete = !tarea.complete;
         }
     });
