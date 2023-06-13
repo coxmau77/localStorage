@@ -24,3 +24,10 @@ body {
 .complete {
     text-decoration: line-through;
 }
+
+/* https://www.w3schools.com/cssref/sel_focus.php */
+input:focus {
+    background-color: greenyellow;
+    border: none;
+    outline: none;
+  }
